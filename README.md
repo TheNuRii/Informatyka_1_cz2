@@ -1,0 +1,1 @@
+# Informatyka_1_cz2

@@ -7,7 +7,7 @@ class Adress {
         string Street, City, Country;
         int House_number, Zip_code[6];
     public:
-        void enter_data(string, string, string, int, int[])
+        void enter_data(string, string, string, int, int[]);
         void display();
         int get_number(){
             return House_number;
@@ -18,10 +18,10 @@ class Adress {
 class Cylinder {
     double raidus;
 public:
-    Cylinderlinder(double r = 1.0) : raidus(r) { }
+    Cylinder(double r = 1.0) : raidus(r) { }
     double area() {return 3.14 * raidus *  raidus;}
     // destruktor
-    ~Circle(){
+    ~Cylinder(){
         std::cout<<"Cilinder descructor in use.";
     }
 };
@@ -49,9 +49,9 @@ complex Cmult (complex a1, complex a2){
 
 int main(){
     Adress my_address, university, my_girl_friend;
-    int where = my_gril_friend.get_number();
+    int where = my_girl_friend.get_number();
 
-    Cilinder column(10, 20);
+    Cylinder column(20);
     column.~Cylinder();
 
 }

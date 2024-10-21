@@ -27,6 +27,14 @@ public:
     void zmien_pojemnosc_dysku(int nowa_pojemnosc_dysku){
         this->pojemnosc_dysku = nowa_pojemnosc_dysku;
     }
+
+    void setLaptop(std::string marka, std::string model, std::string procesor, int pamiec_RAM, int pojemnosc_dysku){
+        this->marka = marka;
+        this->model =  model;
+        this->procesor = procesor;
+        this->pamiec_RAM = pamiec_RAM;
+        this->pojemnosc_dysku = pojemnosc_dysku;
+    }
 };
 
 class Smartfon {
@@ -54,6 +62,14 @@ public:
 
     void zmien_pamiec_RAM(int nowa_pamiec_RAM){
         this->pamiec_RAM = nowa_pamiec_RAM;
+    }
+
+    void setSmartfon(std::string marka, std::string model, std::string system_operacyjny, int pamiec_RAM, float rozmiar_ekranu){
+        this->marka = marka;
+        this->model =  model;
+        this->system_operacyjny = system_operacyjny;
+        this->pamiec_RAM = pamiec_RAM;
+        this->rozmiar_ekranu = rozmiar_ekranu;
     }
 };
 
@@ -109,74 +125,74 @@ int main(){
     std::string typ_roweru;
     int liczba_biegow;
     float waga;
+    int nowa_pamiec_RAM;
+    int nowa_pojemnosc_dysku;
+    std::string nowy_system_operacyjny;
+    std::string nowy_typ_roweru;
+    int nowa_liczba_biegow;
+    float nowa_waga;
 
+    Laptop laptop(marka, model, procesor, pamiec_RAM, pojemnosc_dysku);
+    Smartfon smartfon(marka, model, system_operacyjny, pamiec_RAM, rozmiar_ekranu);
+    Rower rower;
 
-    cout << "Podaj zadanie: ";
     cin >> zadanie;
-    cin.ignore();  // Oczyszczenie bufora wejściowego
 
     switch(zadanie){
         case 1:
-            cout << "Podaj specyfikacje laptopa (marka model procesor RAM dysk):" << endl;
-            getline(cin, marka);
-            getline(cin, model);
-            getline(cin, procesor);
-            cin >> pamiec_RAM >> pojemnosc_dysku;
-            Laptop laptop(marka, model, procesor, pamiec_RAM, pojemnosc_dysku);
+            cout << "Podaj specyfikacje laptopa=";
+            cin >> marka;
+            cin >> model;
+            cin >> procesor;
+            cin >> pamiec_RAM;
+            cin >> pojemnosc_dysku;
+
+            laptop.setLaptop(marka, model, procesor, pamiec_RAM, pojemnosc_dysku);
             laptop.pokaz_specyfikacje();
 
-            int nowa_pamiec_RAM;
-            int nowa_pojemnosc_dysku;
-
-            cout << "Podaj nową pamięć RAM: ";
+            cout << "RAM=";
             cin >> nowa_pamiec_RAM;
             laptop.zmien_pamiec_RAM(nowa_pamiec_RAM);
 
-            cout << "Podaj nową pojemność dysku: ";
+            cout << "Dysk=";
             cin >> nowa_pojemnosc_dysku;
             laptop.zmien_pojemnosc_dysku(nowa_pojemnosc_dysku);
 
             laptop.pokaz_specyfikacje();
             break;
         case 2:
-            cout << "Podaj specyfikacje smartfona (marka model system RAM ekran):" << endl;
-            getline(cin, marka);
-            getline(cin, model);
-            getline(cin, system_operacyjny);
-            cin >> pamiec_RAM >> rozmiar_ekranu;
+            cout << "Podaj specyfikacje smartfona=";
+            cin >> marka;
+            cin >> model;
+            cin >> system_operacyjny;
+            cin >> pamiec_RAM;
+            cin >> rozmiar_ekranu;
 
-            Smartfon smartfon(marka, model, system_operacyjny, pamiec_RAM, rozmiar_ekranu);
+            smartfon.setSmartfon(marka, model, system_operacyjny, pamiec_RAM, rozmiar_ekranu);
             smartfon.pokaz_dane();
 
-            std::string nowy_system_operacyjny;
-            cout << "Podaj nowy system operacyjny: ";
-            cin.ignore(); // Czyszczenie bufora przed pobraniem nowego ciągu
-            getline(cin, nowy_system_operacyjny);
+            cout << "OS=";
+            cin >> nowy_system_operacyjny;
             smartfon.zmien_system_operacyjny(nowy_system_operacyjny);
 
-            cout << "Podaj nową pamięć RAM: ";
+            cout << "RAM=";
             cin >> nowa_pamiec_RAM;
             smartfon.zmien_pamiec_RAM(nowa_pamiec_RAM);
 
             smartfon.pokaz_dane();
             break;
         case 3:
-            Rower rower;
             rower.pokaz_dane();
 
-            std::string nowy_typ_roweru;
-            cout << "Podaj nowy typ roweru: ";
-            cin.ignore(); // Czyszczenie bufora
-            getline(cin, nowy_typ_roweru);
+            cout << "Typ=";
+            cin >> nowy_typ_roweru;
             rower.zmien_typ_roweru(nowy_typ_roweru);
 
-            int nowa_liczba_biegow;
-            cout << "Podaj nową liczbę biegów: ";
+            cout << "Liczba biegow=";
             cin >> nowa_liczba_biegow;
             rower.zmien_liczbe_biegow(nowa_liczba_biegow);
 
-            float nowa_waga;
-            cout << "Podaj nową wagę: ";
+            cout << "Waga=";
             cin >> nowa_waga;
             rower.zmien_wage(nowa_waga);
 

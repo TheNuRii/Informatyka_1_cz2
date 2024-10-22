@@ -3,13 +3,13 @@ using namespace std;
 
 class Laptop {
 private:
-    std::string marka;
-    std::string model;
-    std::string procesor;
+    string marka;
+    string model;
+    string procesor;
     int pamiec_RAM;
     int pojemnosc_dysku;
 public:
-    Laptop(std::string marka, std::string model, std::string procesor, int pamiec_RAM, int pojemnosc_dysku){
+    Laptop(string marka, string model, string procesor, int pamiec_RAM, int pojemnosc_dysku){
         this->marka = marka;
         this->model =  model;
         this->procesor = procesor;
@@ -28,7 +28,7 @@ public:
         this->pojemnosc_dysku = nowa_pojemnosc_dysku;
     }
 
-    void setLaptop(std::string marka, std::string model, std::string procesor, int pamiec_RAM, int pojemnosc_dysku){
+    void setLaptop(string marka, string model, string procesor, int pamiec_RAM, int pojemnosc_dysku){
         this->marka = marka;
         this->model =  model;
         this->procesor = procesor;
@@ -39,13 +39,13 @@ public:
 
 class Smartfon {
 private:
-    std::string marka;
-    std::string model;
-    std::string system_operacyjny;
+    string marka;
+    string model;
+    string system_operacyjny;
     int pamiec_RAM;
     float rozmiar_ekranu;
 public:
-    Smartfon(std::string marka, std::string model, std::string system_operacyjny, int pamiec_RAM, float rozmiar_ekranu){
+    Smartfon(string marka, string model, string system_operacyjny, int pamiec_RAM, float rozmiar_ekranu){
         this->marka = marka;
         this->model =  model;
         this->system_operacyjny = system_operacyjny;
@@ -56,7 +56,7 @@ public:
         cout << marka << " " << model << " " << system_operacyjny << " " << pamiec_RAM << " " << rozmiar_ekranu << endl;
     }
 
-    void zmien_system_operacyjny(std::string nowy_system_operacyjny){
+    void zmien_system_operacyjny(string nowy_system_operacyjny){
         this->system_operacyjny = nowy_system_operacyjny;
     }
 
@@ -64,7 +64,7 @@ public:
         this->pamiec_RAM = nowa_pamiec_RAM;
     }
 
-    void setSmartfon(std::string marka, std::string model, std::string system_operacyjny, int pamiec_RAM, float rozmiar_ekranu){
+    void setSmartfon(string marka, string model, string system_operacyjny, int pamiec_RAM, float rozmiar_ekranu){
         this->marka = marka;
         this->model =  model;
         this->system_operacyjny = system_operacyjny;
@@ -75,13 +75,13 @@ public:
 
 class Rower {
 private:
-    std::string marka;
-    std::string model;
-    std::string typ_roweru;
+    string marka;
+    string model;
+    string typ_roweru;
     int liczba_biegow;
     float waga;
 public:
-    Rower(std::string marka, std::string model, std::string typ_roweru, int liczba_biegow, float waga){
+    Rower(string marka, string model, string typ_roweru, int liczba_biegow, float waga){
         this->marka = marka;
         this->model =  model;
         this->typ_roweru = typ_roweru;
@@ -100,7 +100,7 @@ public:
         cout << marka << " " << model << " " << typ_roweru << " " << liczba_biegow << " " << waga << endl;
     }
 
-    void zmien_typ_roweru(std::string nowy_typ_roweru){
+    void zmien_typ_roweru(string nowy_typ_roweru){
         this->typ_roweru = nowy_typ_roweru;
     }
 
@@ -115,38 +115,34 @@ public:
 
 int main(){
     int zadanie;
-    std::string marka;
-    std::string model;
-    std::string procesor;
+    string marka;
+    string model;
+    string procesor;
     int pamiec_RAM;
     int pojemnosc_dysku;
-    std::string system_operacyjny;
+    string system_operacyjny;
     float rozmiar_ekranu;
-    std::string typ_roweru;
+    string typ_roweru;
     int liczba_biegow;
     float waga;
     int nowa_pamiec_RAM;
     int nowa_pojemnosc_dysku;
-    std::string nowy_system_operacyjny;
-    std::string nowy_typ_roweru;
+    string nowy_system_operacyjny;
+    string nowy_typ_roweru;
     int nowa_liczba_biegow;
     float nowa_waga;
-
-    Laptop laptop(marka, model, procesor, pamiec_RAM, pojemnosc_dysku);
-    Smartfon smartfon(marka, model, system_operacyjny, pamiec_RAM, rozmiar_ekranu);
-    Rower rower;
 
     cin >> zadanie;
 
     switch(zadanie){
-        case 1:
+        case 1: {
             cout << "Podaj specyfikacje laptopa=";
             cin >> marka;
             cin >> model;
             cin >> procesor;
             cin >> pamiec_RAM;
             cin >> pojemnosc_dysku;
-
+            Laptop laptop(marka, model, procesor, pamiec_RAM, pojemnosc_dysku);
             laptop.setLaptop(marka, model, procesor, pamiec_RAM, pojemnosc_dysku);
             laptop.pokaz_specyfikacje();
 
@@ -160,13 +156,15 @@ int main(){
 
             laptop.pokaz_specyfikacje();
             break;
-        case 2:
+        }
+        case 2: {
             cout << "Podaj specyfikacje smartfona=";
             cin >> marka;
             cin >> model;
             cin >> system_operacyjny;
             cin >> pamiec_RAM;
             cin >> rozmiar_ekranu;
+            Smartfon smartfon(marka, model, system_operacyjny, pamiec_RAM, rozmiar_ekranu);
 
             smartfon.setSmartfon(marka, model, system_operacyjny, pamiec_RAM, rozmiar_ekranu);
             smartfon.pokaz_dane();
@@ -181,7 +179,9 @@ int main(){
 
             smartfon.pokaz_dane();
             break;
-        case 3:
+        }
+        case 3: {
+            Rower rower;
             rower.pokaz_dane();
 
             cout << "Typ=";
@@ -198,6 +198,7 @@ int main(){
 
             rower.pokaz_dane();
             break;
+            }
         default:
             cout << "Niepoprawny numer zadania" << endl;
     }

@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include "iostream"
 
 using namespace std;
 
@@ -8,12 +8,13 @@ private:
     string nazwa_;
     double cenna_netto_;
     double waga_;
-    int vat_;
+    int podatek_vat_;
 
 public:
-    Produckt(string nazawa, double cenna_netto, double waga, int vat);
-
-    void wyswietl_info_o_produkcie() const;
-    Produkt(){}
-    ~Produkt(){}
+    Produkt(string nazawa, double cenna_netto, double waga, int vat);
+    Produkt();
+    void wyswietlInfoOProdukcie();
+    double getInfoOWadze();
+    double wyliczWartoscBrutto();
+    ~Produkt();
 };

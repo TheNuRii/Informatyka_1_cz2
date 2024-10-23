@@ -1,20 +1,18 @@
 #pragma once
-
+#include "iostream"
 #include "produkt.h"
-
+using namespace std;
 
 class Koszyk{
 private:
-    int const WIELKOSC_KOSZYKA = 10;
     Produkt koszyk_[10];
-    int index = 0;
+    int ile_produktow_w_koszyku_;
 
 public:
-    Koszyk(){}
+    Koszyk();
+    void dodajProduktDoKoszyka( Produkt& produkt);
+    void wyswietlCoZnajdujeSieWKoszyku();
+    double calaWagaKoszyka();
 
-    void dodaj_do_koszyka(const Produkt& p);
-    void wyswietl_produkty();
-    double waga_koszyka() const;
-
-    ~Koszyk(){}
+    ~Koszyk();
 };

@@ -10,7 +10,7 @@ private:
 
 public:
     Samochod(std::string numer_rejestracyjny, int moc_silnika, float waga, char rodzaj_silnika);
-    void wyswietlSamochod();
-    void usunSamochod();
-    ~Samochod();
+
+    std::string uzyskajDostepDoNrRejestracyjnego();
+    int uzyskajDostepdoMoc();
 };

@@ -10,10 +10,10 @@ Samochod::Samochod(string numer_rejestracyjny, int moc_silnika, float waga, char
     rodzaj_silnika_ = rodzaj_silnika;
 }
 
-void Samochod::wyswietlSamochod() {
-    cout << numer_rejestracyjny_ << ' ' << moc_silnika_ << "||\n";
+string Samochod::uzyskajDostepDoNrRejestracyjnego() {
+    return numer_rejestracyjny_;
 }
 
-void Samochod::usunSamochod() {
-    Samochod::~Samochod();
+int Samochod::uzyskajDostepdoMoc() {
+    return moc_silnika_;
 }

@@ -20,7 +20,8 @@ int main() {
 
         for (int i = 0; i < N; ++i){
             cin >> nowy_numer_rejestracyjny >> nowa_moc_slinika >> nowa_waga >> nowy_rodzaj_silnika;
-            Samochod samochod(nowy_numer_rejestracyjny, nowa_moc_slinika, nowa_waga, nowy_rodzaj_silnika);
+            Samochod *samochod;
+            samochod = new Samochod(nowy_numer_rejestracyjny, nowa_moc_slinika, nowa_waga, nowy_rodzaj_silnika);
             katalog.dodajSamochodDoKatalogu(samochod);
         }
 

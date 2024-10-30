@@ -9,6 +9,7 @@ private:
     char rodzaj_silnika_;
 
 public:
+    Samochod();
     Samochod(std::string numer_rejestracyjny, int moc_silnika, float waga, char rodzaj_silnika);
 
     std::string uzyskajDostepDoNrRejestracyjnego();

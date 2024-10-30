@@ -4,7 +4,7 @@
 
 class Katalog{
 private:
-    Samochod* katalog_samochodow_[10];
+    Samochod katalog_samochodow_[10];
     int ile_samochodow_w_katalogu_;
 
 public:

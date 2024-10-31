@@ -11,18 +11,19 @@ public:
     void wyswietl_koszyk();
     double waga();
     void dodaj(Produkt &p);
+    void usun(int index_do_usuniecia);
 
-    //Koszyk(const Koszyk&);
+    Koszyk(const Koszyk&);
 
-    //Koszyk& operator=(const Koszyk &b);
-    //Koszyk& operator+=(const Produkt &p);
-    //Koszyk& operator-=(const Produkt &p);
-    //Produkt& operator[](int i);
+    Koszyk& operator=(const Koszyk &b);
+    Koszyk& operator+=(const Produkt &p);
+    Koszyk& operator-=(const Produkt &p);
+    Produkt& operator[](int i);
 
-    //friend ostream& operator<<(ostream &cout, const Koszyk &kp);
+    friend ostream& operator<<(ostream &cout, const Koszyk &kp);
 private:
     Produkt tablica_[10];
     int indeks_;
 
-    
+
 };

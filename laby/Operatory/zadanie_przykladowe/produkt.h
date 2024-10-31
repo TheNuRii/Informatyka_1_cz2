@@ -8,16 +8,16 @@ class Produkt
 public:
     Produkt(string nazwa, double cena, double waga, int vat);
     Produkt();
-    //Produkt(const Produkt&);
+    Produkt(const Produkt&);
     ~Produkt();
     void wyswietl();
     double zwroc_wage();
 
-    //Produkt& operator=(const Produkt &b);
+    Produkt& operator=(const Produkt &b);
 
-    //friend bool operator==(const Produkt &p1, const Produkt &p2);
-    //friend bool operator!=(const Produkt &p1, const Produkt &p2);
-    //friend ostream& operator<<(ostream &cout, const Produkt &p);
+    friend bool operator==(const Produkt &p1, const Produkt &p2);
+    friend bool operator!=(const Produkt &p1, const Produkt &p2);
+    friend ostream& operator<<(ostream &cout, const Produkt &p);
 
 private:
     string nazwa_;

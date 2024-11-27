@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Downloads/Nowy folder z rzeczami"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ios": "cpp"
+		}
+	}
+}

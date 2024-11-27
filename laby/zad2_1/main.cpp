@@ -29,7 +29,7 @@ public:
 
 class Prostokat{
 private:
-    float a, b, x, y;
+    float a, b;
 
 public:
     Prostokat();

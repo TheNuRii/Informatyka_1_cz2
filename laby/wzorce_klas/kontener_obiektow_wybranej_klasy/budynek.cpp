@@ -12,9 +12,16 @@ public:
         wysokosc_budynku_ = wysokosc;
     }
 
+    Budynek(){
+        nazwa_budynku_ = "";
+        dlugosc_geograficzna_ = 0;
+        szerokosc_geograficzna_ = 0;
+        wysokosc_budynku_ = 0;
+    }
+
     void wyswietlInformacje(){
-        cout << '|' << nazwa_budynku_ << ' ' << dlugosc_geograficzna_;
-        cout  << ' ' << szerokosc_geograficzna_ << ' ' << wysokosc_budynku_ << '|';
+        cout << nazwa_budynku_ << ' ' << dlugosc_geograficzna_;
+        cout  << ' ' << szerokosc_geograficzna_ << ' ' << wysokosc_budynku_ ;
     }
 
     float getDlugoscGeograficzna(){

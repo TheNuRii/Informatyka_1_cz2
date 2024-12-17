@@ -4,22 +4,31 @@ using namespace std;
 
 
 // All declarations for the class Linker
-Linker::Linker(Osoba **ptr, int next, int prev){
-    ptr_element_ = ptr;
+Linker::Linker(Osoba * osoba, Linker * next = nullptr, Linker * prev = nullptr){
+    ptr_element_ = osoba;
     next_element_ = next;
     prev_element_ = prev;
 }
 
-int Linker::getNextElement() const{
+
+Linker * Linker::getNextElement() const{
     return next_element_;
 }
 
-int Linker::getPrevElement() const{
+Linker * Linker::getPrevElement() const{
     return prev_element_;
 }
 
 Osoba * Linker::getPtrElement() const{
     return ptr_element_;
+}
+
+void Linker::setNextElement(Linker * next){
+    next_element_ = next;
+}
+
+void Linker::setPrevElement(Linker * prev){
+    prev_element_ = prev;
 }
 
 // All declarations for the class ListaDwukiernukowa
@@ -36,26 +45,29 @@ ListaDwukiernukowa::~ListaDwukiernukowa(){
 
 void ListaDwukiernukowa::deleteAllElements(){
     while(first_element_ != nullptr){
-        delete first_element_;
+        Linker *temp = first_element_;
         first_element_ = first_element_->getNextElement();
+        delete temp;
     }
+    last_element_ = nullptr;
 }
 
-void ListaDwukiernukowa::addElement(Osoba *ptr){
+void ListaDwukiernukowa::addElement(Osoba *osoba){
+    Linker * new_element = new Linker(osoba);
     if(first_element_ == nullptr){
-        first_element_ = new Linker(&ptr, nullptr, nullptr);
-        last_element_ = first_element_;
+        last_element_ = first_element_ = new_element;
     }
     else{
-        last_element_->setNextElement(new Linker(&ptr, nullptr, last_element_->getPrevElement()));
-        last_element_ = last_element_->getNextElement();
+        last_element_->setNextElement(new_element);
+        new_element->setPrevElement(last_element_);
+        last_element_ = new_element;
     }
 }
 
 void ListaDwukiernukowa::deleteElement(string imie_osoby){
     Linker *temp = first_element_;
     while(temp != nullptr){
-        if(temp->getPtrElement()->getImie() == imie_osoby){
+        if(temp->getPtrElement()->getImieOsoby() == imie_osoby){
             if(temp->getPrevElement() == nullptr){
                 first_element_ = temp->getNextElement();
             }
@@ -73,22 +85,23 @@ void ListaDwukiernukowa::deleteElement(string imie_osoby){
         }
         temp = temp->getNextElement();
     }
+     cout << "Nie znaleziono osoby o imieniu: " << imie_osoby << endl;
 }
 
 void ListaDwukiernukowa::printFromTheBeginningList(){
     Linker *temp = first_element_;
     while(temp != nullptr){
-        temp->getPtrElement()->wyswietlOsobe();
-        cout << endl;
+        cout << *(temp->getPtrElement()) << "-> ";
         temp = temp->getNextElement();
     }
+    cout << "null" << endl;
 }
 
 void ListaDwukiernukowa::printFromTheEndList(){
     Linker *temp = last_element_;
     while(temp != nullptr){
-        temp->getPtrElement()->wyswietlOsobe();
-        cout << endl;
-        temp = temp->getPrevElement();
+       cout << *(temp->getPtrElement()) << "-> ";
+       temp = temp->getPrevElement();
     }
+    cout << "null" << endl;
 }

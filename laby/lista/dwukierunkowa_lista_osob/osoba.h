@@ -5,12 +5,11 @@ using namespace std;
 
 class Osoba{
 public:
-    Osoba();
     Osoba(string imie, int wiek);
 
     string getImieOsoby()const;
     int getWiekOsoby()const;
-    friend ostream operator<<(ostream out, const Osoba &osoba);
+    friend ostream& operator<<(ostream& out, const Osoba &osoba);
 
     friend class Lista;
 private:

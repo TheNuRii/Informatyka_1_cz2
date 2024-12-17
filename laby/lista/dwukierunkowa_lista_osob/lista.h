@@ -6,15 +6,19 @@ using namespace std;
 
 class Linker{
 public:
-    Linker(Osoba **ptr, int next, int prev);
+    Linker(Osoba* osoba, Linker* next, Linker* prev);
+    ~Linker();
 
-    int getNextElement() const;
-    int getPrevElement() const;
+    Linker * getNextElement() const;
+    Linker * getPrevElement() const;
     Osoba * getPtrElement() const;
+
+    void setNextElement(Linker* next);
+    void setPrevElement(Linker* prev);
 private:
-    int next_element_;
-    int prev_element_;
-    Osoba ** ptr_element_;
+    Linker * next_element_;
+    Linker * prev_element_;
+    Osoba* ptr_element_;
 };
 
 class ListaDwukiernukowa{
@@ -22,11 +26,13 @@ public:
     ListaDwukiernukowa();
     ~ListaDwukiernukowa();
 
-    void addElement(Osoba *ptr);
+    void addElement(Osoba * osoba);
     void deleteElement(string imie_osoby);
     void deleteAllElements();
+
     void printFromTheBeginningList();
     void printFromTheEndList();
+
 private:
     Linker *first_element_;
     Linker *last_element_;

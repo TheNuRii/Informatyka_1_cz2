@@ -69,13 +69,10 @@ void Polynominal::operator+=( const Polynominal &right ){
 }
 
 void Polynominal::operator*= (const Term<int> &right){
-    list<Term<int>> tmp_list;
-    auto itr {terms_.begin()};
-    for (; itr != terms_.end(); ++itr){
-        tmp_list.push_back((*itr)*right);
+     for (auto &term : terms_) {
+        term.coef_ *= right.coef_;
+        term.pow_ *= right.pow_;
     }
-
-    terms_ = tmp_list;
 }
 
 Polynominal operator +(const Polynominal &left, const Polynominal &right){
@@ -86,20 +83,18 @@ Polynominal operator +(const Polynominal &left, const Polynominal &right){
 
 Polynominal operator *(const Polynominal &left, const Term<int> &right){
     Polynominal result;
-
-    for (auto itr = left.terms_.begin(); itr != left.terms_.end(); ++itr){
-        result += (*itr) * right;
+    for (const auto &term : left.terms_) {
+        result.terms_.push_back(Term<int>(term.coef_ * right.coef_, term.pow_ + right.pow_));
     }
     return result;
 }
 
 Polynominal operator* (const Polynominal &left, const Polynominal &right){
     Polynominal result;
-    auto itrL{ left.terms_};
-    auto itrR {right.terms_} ;
-
-    
-    }   
+    for (const auto &termL : left.terms_) {
+        for (const auto &termR : right.terms_) {
+            result += Polynominal(termL.coef_ * termR.coef_, termL.pow_ + termR.pow_);
+        }
+    }
     return result;
-
 }

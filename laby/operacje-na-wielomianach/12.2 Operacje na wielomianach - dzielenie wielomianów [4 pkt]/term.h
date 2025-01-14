@@ -39,7 +39,11 @@ Term<T> operator *(const Term<T> &left, const Term<T> &right){
 // do zaimplementowania
 template <typename T>
 Term<T> operator /(const Term<T> &left, const Term<T> &right){
+    assert(left.pow_==right.pow_);
+    Term<T> result(left.coef_/right.coef_, left.pow_ - right.pow_);
+    return result; 
 }
-
 template <typename T>
-} 
+Term<T> operator-(const Term<T> &term) {
+    return Term<T>(-term.coef_, term.pow_);
+}

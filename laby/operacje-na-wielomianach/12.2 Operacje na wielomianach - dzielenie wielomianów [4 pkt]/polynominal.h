@@ -14,16 +14,13 @@ public:
     void operator +=( const Polynominal &right );
     void operator *=(const Term<double> &right);
 
-    // do zaimplementowania
     int degree() const;
-    // end
 
-    list< Term<double> > terms_;  // lista dwukierunkowa STL
+    list< Term<double> > terms_;
 };
 
 ostream & operator<<(ostream &out, const Polynominal &p);
 
-// do zaimplementowania
 Polynominal operator -( const Polynominal &p );
 Polynominal operator +(const Polynominal &left, const Polynominal &right);
 Polynominal operator *(const Polynominal &left, const Polynominal &right);

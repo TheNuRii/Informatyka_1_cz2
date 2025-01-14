@@ -20,7 +20,9 @@ Polynominal::Polynominal(const double coef, const int pow){
 } 
 
 void Polynominal::operator =(const Polynominal &right){  
-    if( !terms_.empty() ) terms_.clear();
+    if( !terms_.empty()) {
+        terms_.clear();
+    }
     for (auto itr = right.terms_.begin(); itr != right.terms_.end(); ++itr)
         if((*itr).coef_!=0) terms_.push_back(*itr);
 }
@@ -58,7 +60,6 @@ void Polynominal::operator *=(const Term<double> &right){
 }
 ostream & operator<<(ostream &out, const Polynominal &p){
     for(auto itr{ p.terms_.begin() }; itr!=p.terms_.end();  ){
-        //out<<" ";
         if( itr==p.terms_.begin()){
             if((*itr).coef_>0) out<<" "; else out<<" -";
         }    
@@ -81,20 +82,60 @@ Polynominal operator *(const Polynominal &left, const Term<double> &right){
 }
 
 
-// do zaimplementowania
+
 int Polynominal::degree() const {
+    return terms_.empty() ? 0 : terms_.front().pow_;
 }
 Polynominal operator +(const Polynominal &left, const Polynominal &right){
+    Polynominal result_add_operation(left);
+    result_add_operation += right;
+    return result_add_operation;
 }
 Polynominal operator *(const Polynominal &left, const Polynominal &right){
+    Polynominal result_multiplication_operation;
+    for (auto &termL : left.terms_)
+        for (auto &termR : right.terms_)
+            result_multiplication_operation += Polynominal(termL * termR);
+    return result_multiplication_operation;
 }
 Polynominal operator -(const Polynominal &p){
+    Polynominal result_substraction_operation;
+    for (const auto &term : p.terms_) {
+        result_substraction_operation.terms_.push_back(-term); 
+    }
+    return result_substraction_operation;
 }
 Polynominal operator /(const Polynominal &left, const Polynominal &right){
+    assert(!right.terms_.empty());
+    Polynominal result_division_operation;
+    Polynominal temp_left = left;
+    while(!temp_left.terms_.empty() && temp_left.degree()>=right.degree()){
+        Term<double> term = temp_left.terms_.front()/ right.terms_.front();
+        result_division_operation.terms_.push_back(term);
+        temp_left = temp_left + (-Polynominal(term)* right);
+    }
+    return result_division_operation;
 }
 Polynominal operator %(const Polynominal &left, const Polynominal &right){
+    assert(!right.terms_.empty());
+    Polynominal temp_left = left;
+    while (!temp_left.terms_.empty() && temp_left.degree()>= right.degree()){
+        Term <double> term = temp_left.terms_.front()/ right.terms_.front();
+        temp_left = temp_left + (-Polynominal(term)* right);
+    }
+    return temp_left;
 }
 void division(const Polynominal &left, const Polynominal &right, Polynominal &result, Polynominal &rmndr){
+    assert(!right.terms_.empty());
+    result = Polynominal();
+    Polynominal temp_left = left;
+    while(!temp_left.terms_.empty() && temp_left.degree() >= right.degree()){
+        Term <double> term = temp_left.terms_.front()/ right.terms_.front();
+        Polynominal temp(term);
+        result += temp;
+        temp_left = temp_left + (-temp* right);
+    }
+    rmndr = temp_left;
 }
 
 

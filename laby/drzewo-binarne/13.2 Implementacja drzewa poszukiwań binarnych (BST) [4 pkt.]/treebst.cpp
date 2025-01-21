@@ -98,7 +98,7 @@ Treebst* Treebst::remove(Treebst* w, int x) {
     } else if (x > w->value) {
         w->r = remove(w->r, x);
     } else {
-        if (w->l == nullptr) {
+         if (w->l == nullptr) {
             Treebst* temp = w->r;
             delete w;
             return temp;
@@ -114,28 +114,34 @@ Treebst* Treebst::remove(Treebst* w, int x) {
     }
     return w;
 }
-
 // funkcja pomocnicza dla metody "int Treebst::height(Treebst* w, int x)"
-int heightUtil(Treebst* w, int x, int &height){
-    if(w==nullptr) return -1;
-    if(w->value==x) return height;
-    if(x<w->value) return heightUtil(w->l,x,++height);
-    else return heightUtil(w->r,x,++height);
-}
+//int heightUtil(Treebst* w, int x, int &height){
+    
+//}
 // zwraca wysokość poddrzewa od elementu o wartości x do ostatniego węzła
 int Treebst::height(Treebst* w, int x){
-    int h = 0;
-    return heightUtil(w, x, h);
+    if(w == nullptr) return -1;
+    while (w != nullptr)
+    {
+        if(w->value == x) return height(w);
+        else if(x < w->value) w = w->l;
+        else if(x > w->value) w = w->r;
+    }
+    return -1;
 }
 // długość ścieżki od korzenia do węzła o wartości x
 int Treebst::depth(Treebst* w, int x) {
     if (w == nullptr) return -1;
-    int depth = 0;
-    while (w != nullptr) {
-        if (w->value == x) return depth;
-        else if (x < w->value) w = w->r;
-        else w = w->l;
-        depth++;
+    if(w->value==x) return 0;
+    //else if(x < w->value) return depth(w->l, x) + 1;
+    //else return depth(w->r, x) + 1;
+    int d = 0;
+    while (w != nullptr)
+    {
+        if (x < w->value) w = w->l;
+        else if (x > w->value) w = w->r;
+        else if (x == w->value) return d;
+        d++;
     }
     return -1;
 }

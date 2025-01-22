@@ -9,6 +9,7 @@ Treebst::~Treebst(){}
 
 bool Treebst::isLeft(){ return l!=nullptr; }
 bool Treebst::isRight(){ return r!=nullptr; }
+
 int Treebst::height(Treebst* w){
     if(w==nullptr) return -1;
     else{
@@ -32,13 +33,7 @@ Treebst* Treebst::removeall( Treebst* w){
     delete w;
     return nullptr;
 }
-void Treebst::printPreOrder(){
-    cout<<"("<<value<<",";
-    if(isLeft()) cout<<l->value<<",";else cout<<"-,";
-    if(isRight()) cout<<r->value<<")";else cout<<"-)";
-    if(isLeft())  l->printPreOrder();
-    if(isRight()) r->printPreOrder(); 
-}
+
 
 // metody do zaimplementowania
 // cz 1. to te same co w zadaniu przykładowym 13.1
@@ -68,6 +63,13 @@ Treebst* Treebst::getnode(Treebst* w, int x ){
 int Treebst::count( Treebst* w ){
     if(w==nullptr) return 0;
     return 1+count(w->l)+count(w->r);
+}
+void Treebst::printPreOrder(){
+    cout<<"("<<value<<",";
+    if(isLeft()) cout<<l->value<<",";else cout<<"-,";
+    if(isRight()) cout<<r->value<<")";else cout<<"-)";
+    if(isLeft())  l->printPreOrder();
+    if(isRight()) r->printPreOrder(); 
 }
 void Treebst::printInOrder(){
     if(isLeft()) l->printInOrder();
